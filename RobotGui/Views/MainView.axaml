@@ -1,0 +1,42 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:RobotGui.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             x:Class="RobotGui.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+	<StackPanel Margin="10" HorizontalAlignment="Stretch">
+		
+		<TextBlock Text="Test">Test</TextBlock>
+
+		<Border Padding="10"  BorderThickness="1" BorderBrush="Black">
+		<StackPanel HorizontalAlignment="Stretch">
+		<TextBlock>Скорость поворота</TextBlock>
+			<StackPanel IsVisible="{Binding RotationSpeedWrong}">
+			<TextBlock Foreground="Salmon" >Неправильное значение, нужно от 0 до 2</TextBlock>
+			</StackPanel>
+			<Grid ColumnDefinitions="*, 60">
+			<Slider Name="RotSlider" Value="{Binding RotationSpeed}" Maximum="2" Minimum="0" Grid.Column="0" Margin="5"></Slider>
+			<TextBox KeyUp="TextBox_KeyUp" Text="{Binding RotationString}" LostFocus="TextBox_LostFocus"  Grid.Column="1" Margin="5"></TextBox>
+			</Grid>
+		</StackPanel>
+		</Border>
+		
+		
+		
+		<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+		<StackPanel Orientation="Vertical" Margin="5">
+			<TextBlock Text="Пиццы"></TextBlock>
+			<TextBlock Text="{Binding Gyroscope.X}"/>
+			<TextBlock Text="{Binding Gyroscope.Y}"/>
+			<TextBlock Text="{Binding Gyroscope.Z}"/>
+		</StackPanel>
+	
+	</StackPanel>
+</UserControl>
